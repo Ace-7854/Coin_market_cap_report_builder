@@ -40,11 +40,11 @@ This project automates the process of retrieving cryptocurrency data from CoinMa
    ```
         # Establish connection once during initialization
         connection = {
-            "user": "s5718375",
+            "user": "<username>",
             "password": "",
-            "host_name": "foston.bournemouth.ac.uk",
-            "port": "1968",
-            "service_name": "student_accts.bournemouth.ac.uk"
+            "host_name": "<hostname>",
+            "port": "<port>",
+            "service_name": "<service_name>"
         }
         connection["password"] = getpass.getpass("Enter the password: ")
         conn_str = f'{connection["user"]}/{connection["password"]}@{connection["host_name"]}:{connection["port"]}/{connection["service_name"]}'
