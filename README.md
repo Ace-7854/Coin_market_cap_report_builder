@@ -37,11 +37,17 @@ This project automates the process of retrieving cryptocurrency data from CoinMa
 
    Modify `oracle_module.py` with your database credentials:
 
-   ```python
-   import cx_Oracle
-   
-   connection = cx_Oracle.connect("username", "password", "host:port/service_name")
-   cursor = connection.cursor()
+   ```
+        # Establish connection once during initialization
+        connection = {
+            "user": "s5718375",
+            "password": "",
+            "host_name": "foston.bournemouth.ac.uk",
+            "port": "1968",
+            "service_name": "student_accts.bournemouth.ac.uk"
+        }
+        connection["password"] = getpass.getpass("Enter the password: ")
+        conn_str = f'{connection["user"]}/{connection["password"]}@{connection["host_name"]}:{connection["port"]}/{connection["service_name"]}'
    ```
 
 ## Usage
