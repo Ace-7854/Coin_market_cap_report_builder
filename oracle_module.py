@@ -5,11 +5,11 @@ class oracle:
     def __init__(self):
         # Establish connection once during initialization
         connection = {
-            "user": "s5718375",
+            "user": "<user>",
             "password": "",
-            "host_name": "foston.bournemouth.ac.uk",
-            "port": "1968",
-            "service_name": "student_accts.bournemouth.ac.uk"
+            "host_name": "<Hostname>",
+            "port": "<port>",
+            "service_name": "<service_name>"
         }
         connection["password"] = getpass.getpass("Enter the password: ")
         conn_str = f'{connection["user"]}/{connection["password"]}@{connection["host_name"]}:{connection["port"]}/{connection["service_name"]}'
