@@ -36,19 +36,18 @@ class PDFReport(FPDF):
 
     def add_figure(self, image_path:str, caption:str):
         """Adds an image (graph/table) to the PDF."""
-        #self.add_page()
+        self.add_page()
         self.image(image_path, x=10, y=self.get_y(), w=180)
         self.ln(85)  # Adjust spacing below the image
         self.set_font('Arial', 'I', 12)
+        self.cell(0,10,"",ln=True, align='C')
         self.cell(0, 10, caption, ln=True, align='C')
-
 
     def save_pdf(self, filename):
         self.output(filename)
 
-    def __get_sanitized_timestamp(self):
+    def get_sanitized_timestamp(self):
         from datetime import datetime
-
         return datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 
     def generate_report(self, figures:list, captions:list, summary:str):
@@ -58,6 +57,6 @@ class PDFReport(FPDF):
             self.add_summary(summary)
             for i in range(len(figures)):
                 self.add_figure(f"{figures[i]}", caption=captions[i])
-            self.save_pdf(f"reports/{self.title}{self.__get_sanitized_timestamp()}.pdf")
+            self.save_pdf(f"reports/{self.title}{self.get_sanitized_timestamp()}.pdf")
         else: 
             raise "Number of figures is different to captions"

@@ -115,7 +115,6 @@ class CoinMarketCapScraper:
 
     def __parse_page(self, html):
         """Series of functions to clean data, step by step"""
-        
         data = self.__cut_down_html(html)
         data = self.__get_fields(data)
         data = self.__sanatize_data(data)

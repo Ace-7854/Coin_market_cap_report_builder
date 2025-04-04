@@ -2,12 +2,12 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 class DataDisplay:
-    def bar_chart(data:str, labels:list, title:str, filename:str):
+    def bar_chart(data:list, labels:list, title:str, filename:str):
         """Makes a bar chart"""
         plt.figure(figsize=(8, 6))
         plt.bar(labels, data, color='skyblue')
-        plt.xlabel("Categories")
-        plt.ylabel("Values")
+        plt.xlabel("Coin")
+        plt.ylabel("Amount")
         plt.title(title)
         plt.savefig(filename)
         plt.close()
@@ -42,19 +42,23 @@ class DataDisplay:
         ax.axis('off')
         table = ax.table(cellText=df.values, colLabels=df.columns, cellLoc='center', loc='center')
         table.auto_set_font_size(False)
-        table.set_fontsize(10)
+        table.set_fontsize(8)
         table.auto_set_column_width([0, 1, 2])
         plt.savefig(filename)
         plt.close()
     
-    def make_figures(labels:list, data:list, figure_path:list, title_figures:list, axis_label:list):
+    def make_figures(labels, data, figure_paths, titles, axis_labels, table_data=None):
         """Creates one of every figure, figure list in order: barchart, linechart, piechart, table"""
-        if len(figure_path) != 4 or len(title_figures) != 4:
+        if len(figure_paths) != 4 or len(titles) != 4:
             raise "4 items for figure_path AND title_figures is required for this method, in order barchart, linechart, piechart, table"
         else:
-            DataDisplay.bar_chart(data, labels, title_figures[0], figure_path[0])
-            DataDisplay.line_chart(data, labels, title_figures[1], figure_path[1], axis_label)
-            DataDisplay.pie_chart(data, labels, title_figures[2], figure_path[2])
-            DataDisplay.table_display([["Sunday", 2, 456, 22], ["Monday", 5, 6,20], ["Tuesday", 8, 9,10]], ["Day", "Number of deaths", "Number of Craniums", "Number of pies"], figure_path[3])
+            DataDisplay.bar_chart(data, labels, titles[0], figure_paths[0])
+            DataDisplay.line_chart(data, labels, titles[1], figure_paths[1], axis_labels)
+            DataDisplay.pie_chart(data, labels, titles[2], figure_paths[2])
+            if table_data:
+                DataDisplay.table_display(table_data, ["Rank", "Name", "Price ($)", "Circulating Supply", "Abbreviation"], figure_paths[3])
+
+            
+
 
 

@@ -16,7 +16,7 @@ class oracle:
         self.__conn = oracledb.connect(conn_str)
         print("✅ Database connection established.")
 
-    def get_data(self, table):
+    def get_data(self, table)->list:
         lst_of_rec = []
         query = f"SELECT * FROM {table}"
         cursor = self.__conn.cursor()  # Keep cursor open across function calls
@@ -69,7 +69,7 @@ class oracle:
 
     def insert_rec(self, table, values:list):
         query = self.__create_insertion_query(table, values)
-        print("Executing query:", query)
+        #print("Executing query:", query)
         cursor = self.__conn.cursor()
         try:
             cursor.execute(query)
